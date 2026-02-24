@@ -3,12 +3,13 @@ LINUX COMMAND NOTES
 cat                 | Displays the contents of the files to standard output (terminal screen)
                     | Original and secondary function is to join (concatenate) multiple files together and print the result
                     | or redirect it to a new file.
-cd                  | Assigns the current terminal path to a specified directory.  Can be used explicitly or using characters.
+cd                  | Changes the current terminal directory.  Can be used explicitly or using characters.
 cp [source] [dest]  | Copy folders / files from source to destination.
 find                | Used to search for files and directories based on conditions (name, type, size, etc.).
                     | Searches recursively by default.  Filters and can act on results.
 ls                  | Lists the contents of a directory.  It shows what files and folders are there.
 mkdir [path]/[name] | Makes a new directory in the designated path.  Can omit the path to create directory in current file path.
+mv [name] [path]    | Moves the named file to the destination directory.
 rm [path]/[name]    | Permanently removes designated files / directories from the system.
 xargs               | Takes input from standard input (stdin) nad turns it into arguments for another commmand.
                     | Reads input (usually from a pipe (|)), splits it into arguments, executes the given command with those args.
