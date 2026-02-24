@@ -1,0 +1,106 @@
+LINUX COMMAND NOTES
+[CTRL] + L          | Clears the screen
+cat                 | Displays the contents of the files to standard output (terminal screen)
+                    | Original and secondary function is to join (concatenate) multiple files together and print the result
+                    | or redirect it to a new file.
+cd                  | Assigns the current terminal path to a specified directory.  Can be used explicitly or using characters.
+cp [source] [dest]  | Copy folders / files from source to destination.
+find                | Used to search for files and directories based on conditions (name, type, size, etc.).
+                    | Searches recursively by default.  Filters and can act on results.
+ls                  | Lists the contents of a directory.  It shows what files and folders are there.
+mkdir [path]/[name] | Makes a new directory in the designated path.  Can omit the path to create directory in current file path.
+rm [path]/[name]    | Permanently removes designated files / directories from the system.
+xargs               | Takes input from standard input (stdin) nad turns it into arguments for another commmand.
+                    | Reads input (usually from a pipe (|)), splits it into arguments, executes the given command with those args.
+
+FOLLOWING THE COMMANDS
+[name]              | Designates the name of the folder used in the command.  
+                    | Note: "name" in this instance is a placeholder for the name and do the brackets should not be used.
+[path]              | Designates the directory path used in the command.
+.                   | The current directory.
+..                  | The parent directory.
+\                   | Escape character for intentional use of other characters.  When used with cd command it goes to root dir.
+;                   | Used to designate the end of the current command loop.  Must be used with a preceding backslash ("\")
+*                   | Wild card symbol that matches any number of characters when referring to filenames.
+|                   | Adds a break between commands.  Sends output from the left as input to commands on the right.
+> [name]            | Redirection of output from the left as input for a file specified on the right.
+                    | If the file does not exist it will be created.  If it already exists it will be overwritten.
+>> [name]           | Redirection of output from the left as input for a file specified on the right.
+                    | If the file does not exist it will be created.  If it already exists it will be appended.
+                    | Note: The difference between pipe and redirection is where the output goes.
+                    |       The pipe sends it to screen terminal output - the redirect sends it to a file.
+{}                  | Used in the find -exec command as a placeholder that is replaced by the name of each specific path or file.
+grep                | GLOBAL REGULAR EXPRESSION PRINT
+                    | Powerful utility used to search for specific patterns of text within files or stream of data.
+-exec               | Parameter or the find command that allows a command execution on every file or directory that find matches.
+-name               | Specifies the name of the file used in the command.  The name that follows must be in quotes("").
+                    | Note: this is a command whereas "name" in [name] is only a placeholder.
+-R                  | Gives a recursive chained list of all the files and folders in the searched area.
+rsync               | Used for efficiently copying and synchronizing files and directories between a source and destination
+sort                | Sorts the content numerically or alphabetically.
+sort -k#            | Sorts the content by specific field number
+-type               | Designates a specific type of file.
+uniq                | Filter utility designed to report or remove adjacent repeated lines from a file or piped input.
+                    | Because it only detects duplicates that are side-by-side it is most often used in a command pipeline after
+                    | a sort command to guarantee all duplicate lines are grouped for proper filtering.
+uniq -f#            | Designates the specific field number by which to start reading for uniqueness.
+
+TYPES OF FILES
+-                   | Regular files
+b                   | Block files
+c                   | Character device file
+d                   | Directory files
+f                   | File type
+p                   | Named pipe file or just a Pipe file
+|                   | link file
+s                   | socket file
+
+EXAMPLES
+01. list within all folders all specifc files named "app.txt"
+ls -R | grep "app.txt"
+app.txt
+app.txt
+
+02. Find in the current directory types of files with the name "app.txt"
+find . -type f -name "app.txt"
+./logs/2026-01/app.txt
+./logs/2026-02/app.txt
+
+Note: The difference between 1 & 2 is that 1 will list only the file names wheras 2 will list the file names with folder directory.
+
+CHAINING EXAMPLES
+Using the Pipe character ("|") you can string together commands further refining the output for display or action.
+
+03. Find in the current directory types of files with the name "app.txt" then concatenate and display the contents of the files.
+find . -type f -name "app.txt" | xargs cat
+
+04. ... where the line contains "ERROR".
+find . -type f -name "app.txt" | xargs cat | grep "ERROR"
+
+05. ... Sort the results
+find . -type f -name "app.txt" | xargs cat | grep "ERROR" | sort
+
+06. ... By fourth column field
+find . -type f -name "app.txt" | xargs cat | grep "ERROR" | sort -k4
+
+07. ... Giving only unique values
+find . -type f -name "app.txt" | xargs cat | grep "ERROR" | sort -k4 | uniq
+
+08. ... From the third column field of output
+find . -type f -name "app.txt" | xargs cat | grep "ERROR" | sort -k4 | uniq -f3
+
+09. ... And output the results to a file named "errors.log"
+find . -type f -name "app.txt" | xargs cat | grep "ERROR" | sort -k4 | uniq -f3 > errors.log
+
+ADVANCED SEARCH EXECUTION EXAMPLES
+10. Find in the current directory types of all files that are ".txt" and copy them to the "Users/backup" directory.
+find . -type f -name "*.txt" -exec cp {} /Users/backup \;
+
+11. Find in the current directory types of all files that are ".txt" and copy their paths to "Users/backup" directory.
+find . -type f -name "*.txt" -exec rsync -R {} /Users/backup \;
+
+Note: The difference between 10 & 11 is that if there are any duplicate file names 10 will only copy one of each of them.
+      The more robust solution for backup is found in 11 that copies the files and their path folders to the new destination.
+
+
+The above was based on the video presentation tutorial from TechWorld with Nana at https://www.youtube.com/watch?v=fwP2JW_VnZI
