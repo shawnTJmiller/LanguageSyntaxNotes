@@ -1,0 +1,439 @@
+## BASIC PYTHON NOTES
+# Python is a high-level, interpreted programming language known for its simplicity and readability. 
+# It was created by Guido van Rossum and first released in 1991. Python supports multiple programming 
+# paradigms, including procedural, object-oriented, and functional programming.
+
+
+## VARIABLES AND DATA TYPES IN PYTHON:
+# How to declare variables in Python:
+# In Python, you can declare variables without specifying their type. The type is inferred from the value assigned to the variable.
+# Example:
+x = 10                                           # An integer variable
+y = 3.14                                         # A float variable
+name = "Alice"                                   # A string variable
+is_active = True                                 # A boolean variable
+
+# Python also supports dynamic typing, which means you can change the type of a variable by assigning a new value to it.
+# Example:
+x = "Now I'm a string!"                          # x is now a string variable
+
+# Python has a rich set of built-in data types, including:
+# - int:    for integers
+# - float:  for floating-point numbers
+# - str:    for strings
+# - bool:   for boolean values (True or False)
+# - list:   for ordered collections of items
+# - tuple:  for ordered, immutable collections of items
+# - dict:   for key-value pairs
+# - set:    for unordered collections of unique items
+# Example of using different data types:
+my_list = [1, 2, 3, 4, 5]                        # A list of integers
+my_tuple = (1, 2, 3)                             # A tuple of integers
+my_dict = {"name": "Alice", "age": 30}           # A dictionary with string keys and mixed values
+my_set = {1, 2, 3}                               # A set of unique integers
+
+# Python also allows for multiple variable assignment in a single line.
+# Example:
+a, b, c = 1, 2.5, "Hello"
+# In this example, a is assigned the integer value 1, b is assigned the float value 2.5, and c is assigned the string value "Hello".
+
+# Python is dynamically typed, which means that the type of a variable can change by assigning a new value to it.
+# Example:
+a = 10                                           # a is an integer
+a = "Now I'm a string!"                          # a is now a string
+
+# When using single quotes for strings, double quotes can included without escaping them, and vice versa.
+# Example:
+string1 = 'This is a string with "double quotes".'  # Using single quotes
+string2 = "This is a string with 'single quotes'."  # Using double quotes
+
+# Python also supports triple quotes for multi-line strings or strings that contain both single and double quotes.
+# Example:
+multi_line_string = """This is a multi-line string with 'single quotes' and "double quotes" without needing to escape them."""
+
+# If a quote character matching the one used to define the string needs to be included, use the backslash (\) to escape it.
+# Example:
+escaped_string = "This is a string with an escaped double quote: \"Hello!\""
+
+# Python can also use the built-in function type() to check the type of a variable.
+# Example:
+print(type(x))                                   # Output: <class 'str'>
+print(type(y))                                   # Output: <class 'float'>
+print(type(name))                                # Output: <class 'str'>
+print(type(is_active))                           # Output: <class 'bool'>
+
+# To check the type of a variable, you can also use the isinstance() function.
+# Example:
+print(isinstance(x, str))                        # Output: True
+print(isinstance(y, float))                      # Output: True
+print(isinstance(name, bool))                    # Output: False
+print(isinstance(is_active, int))                # Output: False
+
+# Python supports type annotations, which allow you to specify the expected type of a variable.
+# Example:
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+# In this example, the function greet takes a parameter name of type str and returns a value of type str.
+# However, type annotations are not enforced at runtime and are mainly used for documentation and static 
+# type checking with tools like mypy.
+
+
+## STRING MANIPULATION IN PYTHON:
+# Python provides a wide range of string manipulation capabilities, including concatenation, slicing, and formatting.
+# Example of string concatenation:
+first_name = "Alice"
+last_name = "Smith"
+full_name = first_name + " " + last_name
+print(full_name)                                # Output: Alice Smith
+
+# String slicing allows you to access a portion of a string by specifying a range of indices. 
+# The syntax for slicing is string[start:stop:step], where start is the index of the first character to include, 
+# the stop is the index of the first character to exclude, and step is the increment between indices.
+# Example:
+greeting = "Hello, World!"
+print(greeting[0:5])                            # Output: Hello
+print(greeting[7:])                             # Output: World!
+print(greeting[:5])                             # Output: Hello
+print(greeting[-6:])                            # Output: World!
+print(greeting[::2])                            # Output: Hlo ol!
+print(greeting[::-1])                           # Output: !dlroW ,olleH
+
+# Example of string formatting using f-strings:
+age = 30
+print(f"{full_name} is {age} years old.")       # Output: Alice Smith is 30 years old.
+
+
+## PRINTING TO CONSOLE IN PYTHON:
+# Python has a built-in print() function to output text or variables to the console as was done in previous examples.
+
+# Python can use formatted string literals (f-strings) for more concise and readable string formatting.
+# Example:
+age = 30
+print(f"{full_name} is {age} years old.")       # Output: Alice Smith is 30 years old.
+
+# Python can print multiple items by separating them with commas in the print() function.
+# Example:
+print("Name:", name, "Age:", age)               # Output: Name: Alice Age: 30
+
+# By default, the print() function adds a newline character at the end of the output. 
+# Python can change this behavior by using the end parameter.
+# Example:
+print("Hello, ", end="")                        # Output: Hello, (without a newline)
+print("World!")                                 # Output: World! (on the same line as Hello,)
+
+# Python can specify a different separator between items using the sep parameter.
+# Example:
+print("Alice", "Bob", "Charlie", sep=" | ")     # Output: Alice | Bob | Charlie
+
+# The print() function can be used to print the value of variables and expressions.
+# Example:
+x = 10
+y = 5
+print("The sum of x and y is:", x + y)          # Output: The sum of x and y is: 15
+
+# Python can redirect the output of the print() function to a file or other stream using the file parameter.
+# Example:
+with open("output.txt", "w") as file:
+    print("This will be written to the file.", file=file)
+# In this example, the output of the print() function will be written to a file named "output.txt" instead of the console.
+
+
+## PYTHON LENGTH AND INDEXING:
+# In Python, you can use the built-in len() function to get the length of a string, list, tuple, or other iterable.
+# Example:
+my_string = "Hello, World!"
+print(len(my_string))                           # Output: 13
+my_list = [1, 2, 3, 4, 5]
+print(len(my_list))                             # Output: 5
+my_tuple = (1, 2, 3)
+print(len(my_tuple))                            # Output: 3
+my_dict = {"name": "Alice", "age": 30}
+print(len(my_dict))                             # Output: 2
+
+# Python uses zero-based indexing, which means that the first element of a string, list, or tuple is accessed with index 0.
+# Example:
+print(my_string[0])                             # Output: H
+print(my_list[0])                               # Output: 1
+print(my_tuple[0])                              # Output: 1
+print(my_dict["name"])                          # Output: Alice
+
+# You can also use negative indexing to access elements from the end of a string, list, or tuple.
+# Example:
+print(my_string[-1])                            # Output: !
+print(my_list[-1])                              # Output: 5
+print(my_tuple[-1])                             # Output: 3
+
+# Python also supports slicing to access a range of elements in a string, list, or tuple.
+# Example:
+print(my_string[0:5])                           # Output: Hello
+print(my_list[1:4])                             # Output: [2, 3, 4]
+print(my_tuple[0:2])                            # Output: (1, 2)
+
+# In slicing, the start index is inclusive and the end index is exclusive. If the start index is omitted, it defaults to 0.
+# If the end index is omitted, it defaults to the length of the string, list, or tuple.
+# Example:
+print(my_string[:5])                            # Output: Hello
+print(my_list[1:])                              # Output: [2, 3, 4, 5]
+print(my_tuple[:])                              # Output: (1, 2, 3)
+
+
+## COMMON STRING METHODS IN PYTHON:
+# Python provides a variety of built-in string methods for manipulating and working with strings. Here are some common string methods:
+# - str.upper(): Converts all characters in the string to uppercase.
+# Example:
+my_string = "Hello, World!"
+print(my_string.upper())                        # Output: HELLO, WORLD!
+
+# - str.lower(): Converts all characters in the string to lowercase.
+# Example:
+print(my_string.lower())                        # Output: hello, world!
+
+# - str.isupper(): Returns True if all characters in the string are uppercase, otherwise returns False.
+# Example:
+print(my_string.isupper())                      # Output: False
+
+# - str.islower(): Returns True if all characters in the string are lowercase, otherwise returns False.
+# Example:
+print(my_string.islower())                      # Output: False
+
+# - str.strip(): Removes leading and trailing whitespace from the string.
+# Example:
+my_string_with_whitespace = "   Hello, World!   "
+print(my_string_with_whitespace.strip())        # Output: Hello, World!
+
+# - str.replace(old, new): Replaces all occurrences of the old substring with the new substring.
+# Example:
+print(my_string.replace("World", "Python"))     # Output: Hello, Python!
+
+# - str.split(separator): Splits the string into a list of substrings based on the specified separator.
+# If the separator is not specified, it defaults to any whitespace.
+# Example:
+print(my_string.split(", "))                    # Output: ['Hello', 'World!']
+print(my_string.split())                        # Output: ['Hello,', 'World!']
+
+# - str.join(iterable): Joins the elements of an iterable (e.g., list) into a single string, using the string as a separator.
+# Example:
+my_list = ["Hello", "World"]
+print(", ".join(my_list))                       # Output: Hello, World
+
+# - str.startswith(prefix): Returns True if the string starts with the specified prefix, otherwise returns False.
+# Example:
+print(my_string.startswith("Hello"))            # Output: True
+
+# - str.endswith(suffix): Returns True if the string ends with the specified suffix, otherwise returns False.
+# Example:
+print(my_string.endswith("!"))                  # Output: True
+
+# - str.find(substring): Returns the lowest index of the substring if it is found in the string, otherwise returns -1.
+# Example:
+print(my_string.find("World"))                  # Output: 7
+
+# - str.count(substring): Returns the number of occurrences of the substring in the string.
+# Example:
+print(my_string.count("o"))                     # Output: 2
+
+# - str.isalpha(): Returns True if all characters in the string are alphabetic, otherwise returns False.
+# Example:
+print(my_string.isalpha())                      # Output: False (because of the comma and space)
+
+# - str.isdigit(): Returns True if all characters in the string are digits, otherwise returns False.
+# Example:
+print("12345".isdigit())                        # Output: True
+print("12345a".isdigit())                       # Output: False (because of the letter 'a')
+
+# - str.isalnum(): Returns True if all characters in the string are alphanumeric (letters and digits), otherwise returns False.
+# Example:
+print("Hello123".isalnum())                     # Output: True
+print("Hello 123".isalnum())                    # Output: False (because of the space)
+
+# - str.capitalize(): Capitalizes the first character of the string and converts the rest to lowercase
+# Example:
+print(my_string.capitalize())                   # Output: Hello, world!
+
+# - str.title(): Capitalizes the first character of each word in the string
+# Example:
+print(my_string.title())                        # Output: Hello, World!
+
+# - str.center(width): Centers the string within a field of the specified width, padding with spaces on both sides.
+# Example:
+print(my_string.center(20))                     # Output: '   Hello, World!    '
+
+# - str.ljust(width): Left-justifies the string within a field of the specified width, padding with spaces on the right.
+# Example:
+print(my_string.ljust(20))                      # Output: 'Hello, World!       '
+
+# - str.rjust(width): Right-justifies the string within a field of the specified width, padding with spaces on the left.
+# Example:
+print(my_string.rjust(20))                      # Output: '       Hello, World!'
+
+# - str.lstrip(): Removes leading whitespace from the string.
+# Example:
+my_string_with_leading_whitespace = "   Hello, World!"
+print(my_string_with_leading_whitespace.lstrip())  # Output: Hello, World!
+
+# - str.rstrip(): Removes trailing whitespace from the string.
+# Example:
+my_string_with_trailing_whitespace = "Hello, World!   "
+print(my_string_with_trailing_whitespace.rstrip())  # Output: Hello, World!
+
+# - str.replace(old, new, count): Replaces the first count occurrences of the old substring with the new substring.
+# If count is not specified, it replaces all occurrences.
+# Example:
+print(my_string.replace("o", "0", 1))           # Output: Hell0, World! (only the first 'o' is replaced)
+print(my_string.replace("o", "0"))              # Output: Hell0, W0rld! (all 'o's are replaced)
+
+# - str.zfill(width): Pads the string with zeros on the left until it reaches the specified width.
+# Example:
+number_string = "42"
+print(number_string.zfill(5))                   # Output: 00042
+
+# - str.format(*args, **kwargs): Formats the string using the specified arguments and keyword arguments.
+# Example:
+name = "Alice"
+age = 30
+print("My name is {} and I am {} years old.".format(name, age))  # Output: My name is Alice and I am 30 years old.
+print("My name is {name} and I am {age} years old.".format(name=name, age=age))  # Output: My name is Alice and I am 30 years old.
+
+
+## IF, ELIF, AND, OR, NOT IN PYTHON:
+# In Python, you can use if, elif, and else statements to control the flow of your program based on certain conditions. The and, or, and not operators are used to combine or negate conditions in these statements.
+# Example of if, elif, and else statements:
+x = 10
+if x > 0:
+    print("x is positive")
+elif x < 0:
+    print("x is negative")
+else:
+    print("x is zero")
+
+# Example of using and, or, and not operators:
+age = 25
+if age >= 18 and age < 65:
+    print("You are an adult.")
+if age < 18 or age >= 65:
+    print("You are not an adult.")
+if not (age >= 18 and age < 65):
+    print("You are not an adult.")
+
+# TRUTHY AND FALSY VALUES IN PYTHON:
+# In Python, certain values are considered "truthy" or "falsy" when evaluated in a boolean context, such as in an if statement.
+# Truthy values are those that evaluate to True, while falsy values evaluate to False.
+# Common falsy values in Python include:
+# - None
+# - False
+# - 0 (zero of any numeric type)
+# - 0.0 (zero float)
+# - 0j (zero complex)
+# - '' (empty string)
+# - [] (empty list)
+# - () (empty tuple)
+# - {} (empty dictionary)
+# - set() (empty set)
+# All other values are considered truthy. For example:
+if []:
+    print("This will not be printed because an empty list is falsy.")
+if [1, 2, 3]:
+    print("This will be printed because a non-empty list is truthy.")
+
+# You can also use the bool() function to explicitly check the truthiness of a value.
+print(bool(None))       # Output: False
+print(bool(0))          # Output: False
+print(bool(""))         # Output: False
+print(bool([]))         # Output: False
+print(bool(set()))      # Output: False
+print(bool(1))          # Output: True
+print(bool("Hello"))   # Output: True
+print(bool([1, 2, 3])) # Output: True
+
+# When using if statements, you can take advantage of the truthiness of values to write more concise code. For example:
+my_list = []
+if my_list:
+    print("The list is not empty.")
+else:
+    print("The list is empty.")
+
+# Checking for falsy values can also be useful when validating user input or checking for the presence of data. For example:
+user_input = input("Enter your name: ")
+if user_input:
+    print(f"Hello, {user_input}!")
+else:
+    print("You did not enter a name.")
+
+# Checking boolean values can also be useful when working with functions that return True or False. For example:
+def is_even(n):
+    return n % 2 == 0
+number = 4
+if is_even(number):
+    print(f"{number} is even.")
+else:
+    print(f"{number} is odd.")
+
+# Example of using not operator to check for falsy values:
+my_string = ""
+if not my_string:
+    print("The string is empty.")
+
+### Travel Weather Planner Example:
+distance_mi = 6
+is_raining = False
+has_bike = False
+has_car = True
+has_ride_share_app = False
+
+if distance_mi <= 0:
+    print('False')
+elif distance_mi <= 1 and not is_raining:
+    print('True')
+elif distance_mi > 1 and distance_mi <= 6 and has_bike and not is_raining:
+    print('True')
+elif distance_mi > 6 and (has_car or has_ride_share_app):
+    print('True')
+else:
+    print('False')
+
+### Config Manager Example:
+test_settings = {
+    'theme': 'dark',
+    'language': 'english',
+    'notifications': 'enabled'
+}
+
+def add_setting(settings: dict[str, str], pair: tuple[str, str]) -> str:
+    key, value = pair
+    key_lc = str(key).lower()
+    value_lc = str(value).lower()
+
+    if key_lc in settings:
+        return f"Setting '{key_lc}' already exists! Cannot add a new setting with this name."
+    
+    settings[key_lc] = value_lc
+    return f"Setting '{key_lc}' added with value '{value_lc}' successfully!"
+
+def update_setting(settings: dict[str, str], pair: tuple[str, str]) -> str:
+    key, value = pair
+    key_lc = str(key).lower()
+    value_lc = str(value).lower()
+
+    if key_lc not in settings:
+        return f"Setting '{key_lc}' does not exist! Cannot update a non-existing setting."
+
+    settings[key_lc] = value_lc
+    return f"Setting '{key_lc}' updated to '{value_lc}' successfully!"
+
+def delete_setting(settings: dict[str, str], key: str) -> str:
+    key_lc = str(key).lower()
+
+    if key_lc in settings:
+        del settings[key_lc]
+        return f"Setting '{key_lc}' deleted successfully!"
+
+    return "Setting not found!"
+
+def view_settings(settings: dict[str, str]) -> str:
+    if not settings:
+        return "No settings available."
+    
+    display = "Current User Settings:\n"
+    for key in settings:
+        display += f"{key.capitalize()}: {settings[key]}\n"
+    return display
