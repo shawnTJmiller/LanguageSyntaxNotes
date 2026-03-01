@@ -1,3 +1,4 @@
+This file 
 LINUX COMMAND NOTES
 [CTRL] + L          | Clears the screen
 cat                 | Displays the contents of the files to standard output (terminal screen)
@@ -10,6 +11,7 @@ find                | Used to search for files and directories based on conditio
 ls                  | Lists the contents of a directory.  It shows what files and folders are there.
 mkdir [path]/[name] | Makes a new directory in the designated path.  Can omit the path to create directory in current file path.
 mv [name] [path]    | Moves the named file to the destination directory.
+pwd                 | Get the name of the present working directory.
 rm [path]/[name]    | Permanently removes designated files / directories from the system.
 xargs               | Takes input from standard input (stdin) nad turns it into arguments for another commmand.
                     | Reads input (usually from a pipe (|)), splits it into arguments, executes the given command with those args.
@@ -105,3 +107,20 @@ Note: The difference between 10 & 11 is that if there are any duplicate file nam
 
 
 The above was based on the video presentation tutorial from TechWorld with Nana at https://www.youtube.com/watch?v=fwP2JW_VnZI
+
+
+LINUX NETWORKING COMMANDS
+ping                | Test network connectivity                   | ping google.com
+ssh / scp           | Remote access or secure file copy           | ssh user@host / scp file host:/dir/
+curl                | Download files / interact with APIs         | curl -O [URL]
+ip addr             | View IP addresses / interfaces              | ip addr shows
+wget                | Direct download files from the internet     |
+
+ARCHIVING & COMPRESSION
+tar                 | Archive / extract files                     | tar -xvf file.tar
+gzip                | Compress files                              | gzip [file]
+zip / unzip         | Work with .zip archives                     | zip / unzip
+
+COMMAND HELP
+man [command]       | Display manual page
+[command] --help    | Show command options
