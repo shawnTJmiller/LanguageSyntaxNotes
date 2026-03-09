@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createStore } from 'redux';
 
 // JavaScript / React Q & A
+// Source: https://www.linkedin.com/feed/update/urn:li:activity:7435507701083701248/
 /*
 Q: What is React?
 A: React is an open-source JavaScript library for building user interfaces or UI components, developed by Facebook.
